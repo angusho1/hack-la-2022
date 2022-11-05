@@ -1,6 +1,6 @@
 export interface Assignment {
     id: string;
     name: string;
-    pct: number;
+    pct: number | null;
     weight: number;
 }
