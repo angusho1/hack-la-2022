@@ -3,7 +3,6 @@ import { Assignment } from '../types/Assignment';
 function cherDaBestMusic(Assignments: Assignment[], desired_grades: number){
 
     const defaultAssignments = Assignments
-    
 
     const missing_percentages = [];
 
@@ -28,10 +27,6 @@ function cherDaBestMusic(Assignments: Assignment[], desired_grades: number){
 
 
     var xq = (desired_grades - obtained_percentages) / sumWithInitial
-
-    console.log(xq)
-
-
 
     const defaultAssignments2:any = []
 
