@@ -8,7 +8,7 @@ function App() {
       <AppBar className="app-bar" position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Grades App
+            Plan Your Grades
           </Typography>
         </Toolbar>
       </AppBar>

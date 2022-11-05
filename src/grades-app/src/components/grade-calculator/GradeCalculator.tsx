@@ -37,6 +37,12 @@ export default function GradeCalculator() {
     setAssignments(selectedCourse.assignments);
   }
 
+  const getTextStyles = (assignment: Assignment) => {
+    return {
+      color: assignment.hasGrade ? 'grey' : 'black'
+    }
+  }
+
   return (
     <Grid container sx={{ p: 10 }}>
       <Grid item>
@@ -50,6 +56,7 @@ export default function GradeCalculator() {
                 value={course}
                 label="Select Course"
                 onChange={onCourseChange}
+                sx={{ width: 400 }}
               >
                 {
                   courses.map(c => (
@@ -58,7 +65,7 @@ export default function GradeCalculator() {
                 }
               </Select>
             </FormControl>
-            <Typography sx={{ mb: 3, mt: 3 }} variant="h4">Enter Grades Below</Typography>
+            <Typography sx={{ mb: 3, mt: 3 }} variant="h4">Grades for { course.code }</Typography>
             <Grid container alignItems="center" sx={{ mb: 4 }}>
               <Grid item xs={9} sx={{ alignItems: 'left' }}>
                 <Typography sx={{ fontSize: '18px' }}>Your Desired Final Grade</Typography>
@@ -92,10 +99,11 @@ export default function GradeCalculator() {
                   assignments.map(assignment => (
                     <Grid container key={assignment.id} alignItems="center">
                       <Grid item xs={9} sx={{ textAlign: 'left' }}>
-                        <Typography>{ assignment.name }</Typography>
+                        <Typography sx={getTextStyles(assignment)}>{ assignment.name }{ assignment.hasGrade ? (<i> (Complete)</i>) : '' }</Typography>
                       </Grid>
                       <Grid item xs={2}>
                         <TextField
+                          disabled={assignment.hasGrade}
                           id="outlined-number"
                           type="number"
                           InputLabelProps={{
