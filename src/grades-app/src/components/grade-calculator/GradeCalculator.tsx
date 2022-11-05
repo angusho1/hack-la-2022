@@ -7,29 +7,30 @@ const round = (num: number) => Math.round(num * 100) / 100;
 
 export default function GradeCalculator() {
   const defaultAssignments: Assignment[] = [
-    { id: '1', name: 'Assignment 1', pct: 72, weight: 0.3, hasGrade: true },
-    { id: '2', name: 'Assignment 2', pct: 64, weight: 0.2, hasGrade: true },
+    { id: '1', name: 'Assignment 1', pct: 0.72, weight: 0.3, hasGrade: true },
+    { id: '2', name: 'Assignment 2', pct: 0.64, weight: 0.2, hasGrade: true },
     { id: '3', name: 'Assignment 3', pct: null, weight: 0.2, hasGrade: false },
     { id: '4', name: 'Assignment 4', pct: null, weight: 0.3, hasGrade: false },
   ];
-  const [desiredGrade, setDesiredGrade] = useState<number>(100);
+  const [desiredGrade, setDesiredGrade] = useState<number>(0.9);
   const [assignments, setAssignments] = useState<Assignment[]>(defaultAssignments);
 
   const onDesiredGradeChange = (e: any) => {
     const value = e.target.value;
     if (!isNaN(value)) {
-      setDesiredGrade(value);
+      const newValue = value / 100;
+      setDesiredGrade(newValue);
       console.log('onDesiredGradeChange assigments', assignments);
-      const newAssignments = cherDaBestMusic(assignments, value);
+      const newAssignments = cherDaBestMusic(assignments, newValue);
       setAssignments(newAssignments);
     }
   };
 
   const changeAssignmentGrade = (id: string, value: number) => {
     const index = assignments.findIndex(a => a.id === id);
-    let newAssignments = assignments.slice();
-    newAssignments[index].pct = value;
-    newAssignments = cherDaBestMusic(newAssignments, value);
+    assignments[index].pct = value / 100;
+
+    const newAssignments = cherDaBestMusic(assignments, desiredGrade);
     setAssignments(newAssignments);
   };
 
@@ -50,7 +51,7 @@ export default function GradeCalculator() {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    value={round(desiredGrade)}
+                    value={round(desiredGrade * 100)}
                     inputProps={{
                       min: 0,
                       max: 100,
@@ -83,7 +84,7 @@ export default function GradeCalculator() {
                                 changeAssignmentGrade(assignment.id, value);
                               }
                             }}
-                            value={assignment.pct ? round(assignment.pct) : 0}
+                            value={assignment.pct ? round(assignment.pct * 100) : 0}
                             inputProps={{
                               min: 0,
                               max: 100,

@@ -27,7 +27,7 @@ function cherDaBestMusic(Assignments: Assignment[], desired_grades: number){
       );
 
 
-    var xq = (desired_grades/100 - obtained_percentages) / sumWithInitial
+    var xq = (desired_grades - obtained_percentages) / sumWithInitial
 
     console.log(xq)
 
@@ -38,7 +38,7 @@ function cherDaBestMusic(Assignments: Assignment[], desired_grades: number){
     for (let i=0; i < defaultAssignments.length; i++) {
         if (defaultAssignments[i]['hasGrade'] === false) {
             const x = defaultAssignments[i];
-            x['pct'] = Math.min(100, Math.max(xq, 0))
+            x['pct'] = Math.min(1, Math.max(xq, 0))
             defaultAssignments2.push(x)
         }
         else {
