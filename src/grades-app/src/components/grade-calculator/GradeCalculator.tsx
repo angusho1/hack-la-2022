@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, Grid, Stack, TextField, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, Divider, Grid, Stack, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import cherDaBestMusic from '../../Calc/calc';
 import { Assignment } from '../../types/Assignment';
@@ -37,14 +37,14 @@ export default function GradeCalculator() {
   return (
     <Grid container sx={{ p: 10 }}>
         <Grid item>
-          <Card sx={{ minWidth: 500 }}>
+          <Card sx={{ minWidth: 500, p: 4 }}>
             <CardContent>
-              <Typography variant="h4">Enter Grades Below</Typography>
-              <Grid container>
-              <Grid item xs={9} sx={{ alignItems: 'left' }}>
-                <Typography>Desired Final Grade</Typography>
+              <Typography sx={{ mb: 3 }} variant="h4">Enter Grades Below</Typography>
+              <Grid container alignItems="center" sx={{ mb: 4 }}>
+                <Grid item xs={9} sx={{ alignItems: 'left' }}>
+                  <Typography sx={{ fontSize: '18px' }}>Your Desired Final Grade</Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                   <TextField
                     id="outlined-number"
                     type="number"
@@ -58,20 +58,24 @@ export default function GradeCalculator() {
                       step: 1
                     }}
                     onChange={onDesiredGradeChange}
-                  />%
+                    size="small"
+                  />
+                </Grid>
+                <Grid item xs={1}>
+                  <Typography>%</Typography>
                 </Grid>
               </Grid>
 
-              <Typography variant="h5">Assignments</Typography>
+              <Divider textAlign="center" sx={{ fontSize: '18px' }}>Assignments</Divider>
 
               <Stack sx={{ mt: 4 }} spacing={3}>
                 { assignments.length > 0 && (
                     assignments.map(assignment => (
-                      <Grid container key={assignment.id}>
-                        <Grid item xs={9} sx={{ alignItems: 'left' }}>
+                      <Grid container key={assignment.id} alignItems="center">
+                        <Grid item xs={9} sx={{ textAlign: 'left' }}>
                           <Typography>{ assignment.name }</Typography>
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={2}>
                           <TextField
                             id="outlined-number"
                             type="number"
@@ -90,7 +94,11 @@ export default function GradeCalculator() {
                               max: 100,
                               step: 1,
                             }}
-                            />%
+                            size="small"
+                            />
+                        </Grid>
+                        <Grid item xs={1}>
+                          <Typography>%</Typography>
                         </Grid>
                       </Grid>
                     ))
