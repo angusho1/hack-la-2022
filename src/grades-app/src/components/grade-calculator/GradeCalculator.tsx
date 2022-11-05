@@ -12,7 +12,7 @@ export default function GradeCalculator() {
     { id: '3', name: 'Assignment 3', pct: null, weight: 0.2, hasGrade: false },
     { id: '4', name: 'Assignment 4', pct: null, weight: 0.3, hasGrade: false },
   ];
-  const [desiredGrade, setDesiredGrade] = useState<number>(1);
+  const [desiredGrade, setDesiredGrade] = useState<number>(100);
   const [assignments, setAssignments] = useState<Assignment[]>(defaultAssignments);
 
   const onDesiredGradeChange = (e: any) => {
@@ -50,7 +50,7 @@ export default function GradeCalculator() {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    value={round(desiredGrade * 100)}
+                    value={round(desiredGrade)}
                     inputProps={{
                       min: 0,
                       max: 100,
