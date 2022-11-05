@@ -1,15 +1,9 @@
 import { Assignment } from '../types/Assignment';
 
-function cherSucks(){
-    const desired_grades = 75
+function cherSucks(Assignments: Assignment[], desired_grades: number){
 
-    const defaultAssignments: Assignment[] = [
-        { id: '1', name: 'Assignment 1', pct: 0.7, weight: 0.3, hasGrade: true },
-        { id: '2', name: 'Assignment 2', pct: 0.6, weight: 0.2, hasGrade: true },
-        { id: '3', name: 'Assignment 3', pct: null, weight: 0.2, hasGrade: false },
-        { id: '4', name: 'Assignment 4', pct: null, weight: 0.3, hasGrade: false },
-      ];
-      console.log(defaultAssignments[0]['hasGrade'])
+    const defaultAssignments = Assignments
+    
 
     var missing_percentages = [];
 
