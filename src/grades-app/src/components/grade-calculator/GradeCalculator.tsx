@@ -1,6 +1,6 @@
 import { Button, Card, CardActions, CardContent, Grid, Stack, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
-import cherSucks from '../../Calc/calc';
+import cherDaBestMusic from '../../Calc/calc';
 import { Assignment } from '../../types/Assignment';
 
 const round = (num: number) => Math.round(num * 100) / 100;
@@ -20,7 +20,7 @@ export default function GradeCalculator() {
     if (!isNaN(value)) {
       setDesiredGrade(value);
       console.log('onDesiredGradeChange assigments', assignments);
-      const newAssignments = cherSucks(assignments, value);
+      const newAssignments = cherDaBestMusic(assignments, value);
       setAssignments(newAssignments);
     }
   };
@@ -29,7 +29,7 @@ export default function GradeCalculator() {
     const index = assignments.findIndex(a => a.id === id);
     let newAssignments = assignments.slice();
     newAssignments[index].pct = value;
-    newAssignments = cherSucks(newAssignments, value);
+    newAssignments = cherDaBestMusic(newAssignments, value);
     setAssignments(newAssignments);
   };
 

@@ -1,6 +1,6 @@
 import { Assignment } from '../types/Assignment';
 
-function cherSucks(Assignments: Assignment[], desired_grades: number){
+function cherDaBestMusic(Assignments: Assignment[], desired_grades: number){
 
     const defaultAssignments = Assignments
     
@@ -56,4 +56,4 @@ function cherSucks(Assignments: Assignment[], desired_grades: number){
 }
 
 
-export default cherSucks;
+export default cherDaBestMusic;
