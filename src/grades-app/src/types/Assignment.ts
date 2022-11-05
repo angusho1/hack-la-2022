@@ -3,4 +3,5 @@ export interface Assignment {
     name: string;
     pct: number | null;
     weight: number;
+    hasGrade: boolean;
 }
