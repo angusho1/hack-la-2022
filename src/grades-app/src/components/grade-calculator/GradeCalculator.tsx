@@ -8,7 +8,7 @@ import { courses } from '../../data/courses';
 const round = (num: number) => Math.round(num * 100) / 100;
 
 export default function GradeCalculator() {
-  const [course, setCourse] = useState<Course>(courses[1]);
+  const [course, setCourse] = useState<Course>(courses[0]);
   const [desiredGrade, setDesiredGrade] = useState<number>(0.9);
   const [assignments, setAssignments] = useState<Assignment[]>(course.assignments);
 
@@ -26,6 +26,8 @@ export default function GradeCalculator() {
   const changeAssignmentGrade = (id: string, value: number) => {
     const index = assignments.findIndex(a => a.id === id);
     assignments[index].pct = value / 100;
+
+    console.log(assignments);
 
     const newAssignments = cherDaBestMusic(assignments, desiredGrade);
     setAssignments(newAssignments);

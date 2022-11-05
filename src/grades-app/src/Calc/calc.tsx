@@ -2,7 +2,7 @@ import { Assignment } from '../types/Assignment';
 
 function cherDaBestMusic(Assignments: Assignment[], desired_grades: number){
 
-    const defaultAssignments = Assignments
+    const defaultAssignments = Assignments.slice();
 
     const missing_percentages = [];
 
