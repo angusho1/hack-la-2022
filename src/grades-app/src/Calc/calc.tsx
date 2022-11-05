@@ -38,7 +38,7 @@ function cherSucks(Assignments: Assignment[], desired_grades: number){
     for (let i=0; i < defaultAssignments.length; i++) {
         if (defaultAssignments[i]['hasGrade'] === false) {
             const x = defaultAssignments[i];
-            x['pct'] = xq
+            x['pct'] = Math.min(100, Math.max(xq, 0))
             defaultAssignments2.push(x)
         }
         else {
