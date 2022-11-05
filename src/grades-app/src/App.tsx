@@ -2,8 +2,10 @@ import React from 'react';
 import './App.css';
 import { AppBar, Box, Button, Grid, IconButton, Toolbar, Typography } from '@mui/material';
 import GradeCalculator from './components/grade-calculator/GradeCalculator';
+import cherSucks from './Calc/calc'
 
 function App() {
+  cherSucks()
   return (
     <div className="App">
       <AppBar position="static">
