@@ -5,9 +5,9 @@ function cherDaBestMusic(Assignments: Assignment[], desired_grades: number){
     const defaultAssignments = Assignments
     
 
-    var missing_percentages = [];
+    const missing_percentages = [];
 
-    var obtained_percentages = 0
+    let obtained_percentages = 0
 
     for (let i=0; i < defaultAssignments.length; i++) {
         if (defaultAssignments[i]['hasGrade'] === false) {
