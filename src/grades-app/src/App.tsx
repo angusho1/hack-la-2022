@@ -2,9 +2,10 @@ import React from 'react';
 import './App.css';
 import { AppBar, Box, Button, Grid, IconButton, Toolbar, Typography } from '@mui/material';
 import GradeCalculator from './components/grade-calculator/GradeCalculator';
-import CherSucks from './Calc/calc'
+import cherSucks from './Calc/calc'
 
 function App() {
+  cherSucks()
   return (
     <div className="App">
       <AppBar position="static">
@@ -12,7 +13,6 @@ function App() {
           <Typography variant="h6" component="div" sx={{  flexGrow: 1 }}>
             Grades App
           </Typography>
-          <CherSucks />
         </Toolbar>
       </AppBar>
       <Grid container>
