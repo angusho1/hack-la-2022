@@ -31,68 +31,68 @@ export default function GradeCalculator() {
   return (
     <Grid container sx={{ p: 10 }}>
         <Grid item>
-        <Card sx={{ minWidth: 500 }}>
-          <CardContent>
-            <Typography variant="h4">Enter Grades Below</Typography>
-            <Grid container>
-            <Grid item xs={9} sx={{ alignItems: 'left' }}>
-              <Typography>Desired Final Grade</Typography>
+          <Card sx={{ minWidth: 500 }}>
+            <CardContent>
+              <Typography variant="h4">Enter Grades Below</Typography>
+              <Grid container>
+              <Grid item xs={9} sx={{ alignItems: 'left' }}>
+                <Typography>Desired Final Grade</Typography>
+                </Grid>
+                <Grid item xs={3}>
+                  <TextField
+                    id="outlined-number"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    defaultValue={desiredGrade * 100}
+                    inputProps={{
+                      min: 0,
+                      max: 100,
+                      step: 1
+                    }}
+                    onChange={onDesiredGradeChange}
+                  />%
+                </Grid>
               </Grid>
-              <Grid item xs={3}>
-                <TextField
-                  id="outlined-number"
-                  type="number"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  defaultValue={desiredGrade * 100}
-                  inputProps={{
-                    min: 0,
-                    max: 100,
-                    step: 1
-                  }}
-                  onChange={onDesiredGradeChange}
-                />%
-              </Grid>
-            </Grid>
 
-            <Typography variant="h5">Assignments</Typography>
+              <Typography variant="h5">Assignments</Typography>
 
-            <Stack sx={{ mt: 4 }} spacing={3}>
-              { assignments.length > 0 && (
-                  assignments.map(assignment => (
-                    <Grid container key={assignment.id}>
-                      <Grid item xs={9} sx={{ alignItems: 'left' }}>
-                        <Typography>{ assignment.name }</Typography>
+              <Stack sx={{ mt: 4 }} spacing={3}>
+                { assignments.length > 0 && (
+                    assignments.map(assignment => (
+                      <Grid container key={assignment.id}>
+                        <Grid item xs={9} sx={{ alignItems: 'left' }}>
+                          <Typography>{ assignment.name }</Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                          <TextField
+                            id="outlined-number"
+                            type="number"
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                            onChange={(e: any) => {
+                              const value = e.target.value;
+                              if (!isNaN(value)) {
+                                const val = round(value / 100);
+                                changeAssignmentGrade(assignment.id, val);
+                              }
+                            }}
+                            defaultValue={assignment.pct ? assignment.pct * 100 : 0}
+                            inputProps={{
+                              min: 0,
+                              max: 100,
+                              step: 1,
+                            }}
+                            />%
+                        </Grid>
                       </Grid>
-                      <Grid item xs={3}>
-                        <TextField
-                          id="outlined-number"
-                          type="number"
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          onChange={(e: any) => {
-                            const value = e.target.value;
-                            if (!isNaN(value)) {
-                              const val = round(value / 100);
-                              changeAssignmentGrade(assignment.id, val);
-                            }
-                          }}
-                          defaultValue={assignment.pct ? assignment.pct * 100 : 0}
-                          inputProps={{
-                            min: 0,
-                            max: 100,
-                            step: 1,
-                          }}
-                          />%
-                      </Grid>
-                    </Grid>
-                  ))
-                )
-              }
-            </Stack>
-          </CardContent>
+                    ))
+                  )
+                }
+              </Stack>
+            </CardContent>
             <CardActions>
             </CardActions>
           </Card>

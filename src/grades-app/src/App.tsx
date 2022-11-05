@@ -8,14 +8,14 @@ function App() {
   cherSucks()
   return (
     <div className="App">
-      <AppBar position="static">
+      <AppBar className="app-bar" position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{  flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Grades App
           </Typography>
         </Toolbar>
       </AppBar>
-      <Grid container>
+      <Grid container justifyContent="center">
         <Grid item>
           <GradeCalculator />
         </Grid>
