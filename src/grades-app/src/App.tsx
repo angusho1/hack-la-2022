@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import { AppBar, Box, Button, Grid, IconButton, Toolbar, Typography } from '@mui/material';
 import GradeCalculator from './components/grade-calculator/GradeCalculator';
-import cherSucks from './Calc/calc'
 import { Assignment } from './types/Assignment';
 
 const defaultAssignments: Assignment[] = [
@@ -14,7 +13,6 @@ const defaultAssignments: Assignment[] = [
 
 
 function App() {
-  cherSucks(defaultAssignments, 75)
   return (
     <div className="App">
       <AppBar className="app-bar" position="static">

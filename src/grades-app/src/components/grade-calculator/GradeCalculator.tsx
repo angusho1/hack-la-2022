@@ -1,13 +1,14 @@
 import { Button, Card, CardActions, CardContent, Grid, Stack, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import cherSucks from '../../Calc/calc';
 import { Assignment } from '../../types/Assignment';
 
 const round = (num: number) => Math.round(num * 100) / 100;
 
 export default function GradeCalculator() {
   const defaultAssignments: Assignment[] = [
-    { id: '1', name: 'Assignment 1', pct: 0.72, weight: 0.3, hasGrade: true },
-    { id: '2', name: 'Assignment 2', pct: 0.64, weight: 0.2, hasGrade: true },
+    { id: '1', name: 'Assignment 1', pct: 72, weight: 0.3, hasGrade: true },
+    { id: '2', name: 'Assignment 2', pct: 64, weight: 0.2, hasGrade: true },
     { id: '3', name: 'Assignment 3', pct: null, weight: 0.2, hasGrade: false },
     { id: '4', name: 'Assignment 4', pct: null, weight: 0.3, hasGrade: false },
   ];
@@ -17,15 +18,19 @@ export default function GradeCalculator() {
   const onDesiredGradeChange = (e: any) => {
     const value = e.target.value;
     if (!isNaN(value)) {
-      const val = round(value / 100);
-      setDesiredGrade(val);
-      console.log(val);
+      setDesiredGrade(value);
+      console.log('onDesiredGradeChange assigments', assignments);
+      const newAssignments = cherSucks(assignments, value);
+      setAssignments(newAssignments);
     }
   };
 
   const changeAssignmentGrade = (id: string, value: number) => {
-    console.log(id);
-    console.log(value);
+    const index = assignments.findIndex(a => a.id === id);
+    let newAssignments = assignments.slice();
+    newAssignments[index].pct = value;
+    newAssignments = cherSucks(newAssignments, value);
+    setAssignments(newAssignments);
   };
 
   return (
@@ -45,7 +50,7 @@ export default function GradeCalculator() {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    defaultValue={desiredGrade * 100}
+                    value={round(desiredGrade * 100)}
                     inputProps={{
                       min: 0,
                       max: 100,
@@ -75,11 +80,10 @@ export default function GradeCalculator() {
                             onChange={(e: any) => {
                               const value = e.target.value;
                               if (!isNaN(value)) {
-                                const val = round(value / 100);
-                                changeAssignmentGrade(assignment.id, val);
+                                changeAssignmentGrade(assignment.id, value);
                               }
                             }}
-                            defaultValue={assignment.pct ? assignment.pct * 100 : 0}
+                            value={assignment.pct ? round(assignment.pct) : 0}
                             inputProps={{
                               min: 0,
                               max: 100,
